@@ -51,6 +51,7 @@ token token::operator=(token& in) {
 }
 token token::operator=(const string& in) {
 	*this = *(new token(in));
+	return *this;
 }
 
 /*operators tokens*/
