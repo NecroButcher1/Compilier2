@@ -7,6 +7,7 @@
 #include <iterator>
 #include <fstream>
 #include <stack>
+#include <queue>
 #include "token.h"
 using namespace std;
 
@@ -18,6 +19,6 @@ public:
 	interpetator(fstream&);
 	interpetator(const string&);
 	interpetator(const char*);
-	const string translate();
+	queue<token> translate();
 	const string calculate();
 };

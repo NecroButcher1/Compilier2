@@ -36,6 +36,7 @@ token::token(const string& in) {
 		try 
 		{
 			stod(in);
+			type = number;
 		}
 		catch (string&) {
 			throw exceptions("unknown token, error in token::token ");

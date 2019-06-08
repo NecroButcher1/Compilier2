@@ -23,10 +23,11 @@ interpetator::interpetator(const char* input) : work_line(input) {
 
 /*translate to RPN*/
 
-const string interpetator::translate() {
+queue<token> interpetator::translate(){
 	istringstream str(work_line);
 	stack<double> st;
 	stack<token> tokens;
+	queue<token> result;
 	token buff;
 	string line;
 	while(!str.eof()) {
@@ -36,9 +37,10 @@ const string interpetator::translate() {
 		{
 			buff=line;
 		}
-		catch (string&)
+		catch (const string&)
 		{
 			throw exceptions("fail in interpretator:translate");
 		}
+		
 	}
 }
