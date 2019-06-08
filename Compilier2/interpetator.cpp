@@ -41,6 +41,30 @@ queue<token> interpetator::translate(){
 		{
 			throw exceptions("fail in interpretator:translate");
 		}
-		
+		if (buff.is_number()) {
+			result.push(buff);
+		}
+		else {
+			if (buff.is_unary()) {
+				tokens.push(buff);
+			}
+			if (buff.is_open_token()) {
+				tokens.push(buff);
+			}
+			if (buff.is_closed_token()) {
+				while (!tokens.top().is_open_token()) {
+					result.push(tokens.top());
+					try
+					{
+						tokens.pop();
+					}
+					catch (const string&) {
+						throw exceptions("unblalanced line :fail in interpetator:translate");
+					}
+				}
+				tokens.pop();
+
+			}
+		}
 	}
 }

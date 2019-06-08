@@ -35,7 +35,7 @@ token::token(const string& in) {
 	else {
 		try 
 		{
-			stod(in);
+			stod(in.c_str());
 			type = number;
 		}
 		catch (string&) {
