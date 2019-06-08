@@ -65,6 +65,18 @@ queue<token> interpetator::translate(){
 				tokens.pop();
 
 			}
+			if (buff.is_binary()) {
+				while (!tokens.empty() && (tokens.top().is_unary() || tokens.top() > buff || (tokens.top() == buff && tokens.top().is_left_assoc()))) {
+					result.push(tokens.top());
+					tokens.pop();
+				}
+				tokens.push(buff);
+			}
 		}
 	}
+	while (!tokens.empty()) {
+		result.push(tokens.top());
+		tokens.pop();
+	}
+	return result;
 }
