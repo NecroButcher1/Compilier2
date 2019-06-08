@@ -58,5 +58,6 @@ public:
 	const string get_type();
 	const string get_assoc();
 	const int get_priority();
+	~token() = default;
 };
 #endif // TOKEN_H_INCLUDED

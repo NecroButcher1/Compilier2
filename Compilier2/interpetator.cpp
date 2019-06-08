@@ -32,6 +32,13 @@ const string interpetator::translate() {
 	while(!str.eof()) {
 		if (str.peek())break;
 		str >> line;
-
+		try
+		{
+			buff=line;
+		}
+		catch (string&)
+		{
+			throw exceptions("fail in interpretator:translate");
+		}
 	}
 }
