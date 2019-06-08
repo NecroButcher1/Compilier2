@@ -23,10 +23,11 @@ interpetator::interpetator(const char* input) : work_line(input) {
 
 /*translate to RPN*/
 
-const string interpetator::translate() {
+queue<token> interpetator::translate(){
 	istringstream str(work_line);
 	stack<double> st;
 	stack<token> tokens;
+	queue<token> result;
 	token buff;
 	string line;
 	while(!str.eof()) {
@@ -36,7 +37,7 @@ const string interpetator::translate() {
 		{
 			buff=line;
 		}
-		catch (string&)
+		catch (const string&)
 		{
 			throw exceptions("fail in interpretator:translate");
 		}
@@ -75,27 +76,8 @@ const string interpetator::translate() {
 	}
 	while (!tokens.empty()) {
 		result.push(tokens.top());
+		cout << tokens.top().get_operand();
 		tokens.pop();
 	}
 	return result;
-}
-	}
-}
-
-double interpetator::calculate(queue<token> b)
-{
-	if (b.empty()) {
-		throw exceptions("Empty RPN");
-	}
-	else if (b.size < 2) {
-		throw exceptions("Small size ");
-	}
-	else {
-		token temp; 
-		b.pop(temp);
-		
-
-
-	}
-	return string();
 }

@@ -1,5 +1,6 @@
 #include "interpretator.h"
 int main() {
-	interpetator p;
+	string p("1+2+3");
+	interpetator l(p);
 	return 0;
 }
