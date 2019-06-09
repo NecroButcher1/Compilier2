@@ -131,12 +131,71 @@ const double interpetator::calculate() {
 				buff.push(temp);
 				result.pop();
 			}
+			else throw exceptions("variables not enought ");
+		}
+		if (!result.empty() and result.front().get_operand() == "-" and result.front().is_binary()) {
+			if (buff.size() >= 2) {
+				double t1 = buff.top();
+				buff.pop();
+				double t2 = buff.top();
+				buff.pop();
+				 t2 = t2 - t1;
+				buff.push(t2);
+				result.pop();
+			}
+			else throw exceptions("variables not enought ");
+		}
+		if (!result.empty() and result.front().get_operand() == "-" and result.front().is_unary()) {
+			if (buff.size() > 0) {
+				double temp = buff.top();
+				buff.pop();
+				temp = temp*(-1);
+				buff.push(temp);
+				result.pop();
+			}
+			else throw exceptions("variables not enought ");
 		}
 		if (!result.empty() and result.front().get_operand() == "+" and result.front().is_unary()) {
 			if (buff.size() > 0) {
 				double temp = buff.top();
 				buff.pop();
 				buff.push(temp);
+				result.pop();
+			}
+			else throw exceptions("variables not enought ");
+		}
+		if (!result.empty() and result.front().get_operand() == "*" and result.front().is_binary()) {
+			if (buff.size() >= 2) {
+				double t1 = buff.top();
+				buff.pop();
+				double t2 = buff.top();
+				buff.pop();
+				t2 = t2 * t1;
+				buff.push(t2);
+				result.pop();
+			}
+			else throw exceptions("variables not enought ");
+		}
+		if (!result.empty() and result.front().get_operand() == "/" and result.front().is_binary()) {
+			if (buff.size() >= 2) {
+				double t1 = buff.top();
+				buff.pop();
+				double t2 = buff.top();
+				buff.pop();
+				t2 = t2 / t1;
+				buff.push(t2);
+				result.pop();
+			}
+			else throw exceptions("variables not enought ");
+		}
+		if (!result.empty() and result.front().get_operand() == "^" and result.front().is_binary()) {
+			if (buff.size() >= 2) {
+				double t1 = buff.top();
+				buff.pop();
+				double t2 = buff.top();
+				buff.pop();
+				t2 = pow(t2,t1);
+				buff.push(t2);
 				result.pop();
 			}
 			else throw exceptions("variables not enought ");
