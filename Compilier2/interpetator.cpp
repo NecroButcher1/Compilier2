@@ -5,7 +5,7 @@
 *	constructors interpretators 
 0*/
 interpetator::interpetator():work_line(""){
-	exceptions("empty arguments");
+	//exceptions("empty arguments");
 }
 interpetator::interpetator(fstream& input) {
 	getline(input, work_line);
@@ -21,6 +21,18 @@ interpetator::interpetator(const char* input) : work_line(input) {
 	if (work_line.empty())exceptions("empty arguments");
 }
 
+/*operators for lol and kek */
+interpetator interpetator::operator=(const string& input) {
+	*this = *(new interpetator(input));
+	return *this;
+}
+interpetator interpetator::operator=(fstream& input) {
+	*this = *(new interpetator(input));
+	return *this;
+}
+const string interpetator::operator*() {
+	return work_line;
+}
 /*translate to RPN*/
 
 queue<token> interpetator::translate(){
@@ -91,4 +103,7 @@ queue<token> interpetator::translate(){
 		tokens.pop();
 	}
 	return result;
+}
+const double interpetator::calculate() {
+	return 0;
 }

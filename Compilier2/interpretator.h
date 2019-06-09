@@ -19,6 +19,10 @@ public:
 	interpetator(fstream&);
 	interpetator(const string&);
 	interpetator(const char*);
+	~interpetator() = default;
 	queue<token> translate();
-	const string calculate();
+	const double calculate();
+	interpetator operator=(const string&);
+	interpetator operator=(fstream&);
+	const string operator*();
 };
