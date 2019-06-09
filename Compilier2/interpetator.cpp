@@ -40,6 +40,45 @@ const string interpetator::translate() {
 		{
 			throw exceptions("fail in interpretator:translate");
 		}
+		if (buff.is_number()) {
+			result.push(buff);
+		}
+		else {
+			if (buff.is_unary()) {
+				tokens.push(buff);
+			}
+			if (buff.is_open_token()) {
+				tokens.push(buff);
+			}
+			if (buff.is_closed_token()) {
+				while (!tokens.top().is_open_token()) {
+					result.push(tokens.top());
+					try
+					{
+						tokens.pop();
+					}
+					catch (const string&) {
+						throw exceptions("unblalanced line :fail in interpetator:translate");
+					}
+				}
+				tokens.pop();
+
+			}
+			if (buff.is_binary()) {
+				while (!tokens.empty() && (tokens.top().is_unary() || tokens.top() > buff || (tokens.top() == buff && tokens.top().is_left_assoc()))) {
+					result.push(tokens.top());
+					tokens.pop();
+				}
+				tokens.push(buff);
+			}
+		}
+	}
+	while (!tokens.empty()) {
+		result.push(tokens.top());
+		tokens.pop();
+	}
+	return result;
+}
 	}
 }
 

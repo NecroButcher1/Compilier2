@@ -7,7 +7,7 @@
 using namespace std;
 
 /* operators and priority operators*/
-const set<string> operators({ "^~+-*/&<>=#!;" }); 
+const set<string> operators({ "^~+-*/&<>=#!;)(" }); 
 const set<string> priority1({ "^~+-" });
 const set<string> priority2({ "*/&" });
 const set<string> priority3({ "+-" });
