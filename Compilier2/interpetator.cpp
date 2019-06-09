@@ -131,8 +131,21 @@ const double interpetator::calculate() {
 				buff.push(temp);
 				result.pop();
 			}
-
+		}
+		if (!result.empty() and result.front().get_operand() == "+" and result.front().is_unary()) {
+			if (buff.size() > 0) {
+				double temp = buff.top();
+				buff.pop();
+				buff.push(temp);
+				result.pop();
+			}
+			else throw exceptions("variables not enought ");
 		}
 	}
-	return 0;
+	double result1 = 0;
+	while (!buff.empty()) {
+		result1 += buff.top();
+		buff.pop();
+	}
+	return result1;
 }

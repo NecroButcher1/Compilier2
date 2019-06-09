@@ -38,6 +38,8 @@ int main() {
 				cout << out.front().get_operand();
 				out.pop();
 			}
+			double r = curr.calculate();
+			cout <<"="<< r;
 			cout << endl;
 		}
 	}
