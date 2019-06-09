@@ -20,5 +20,5 @@ public:
 	interpetator(const string&);
 	interpetator(const char*);
 	queue<token> translate();
-	const string calculate();
+	double calculate(queue<token> b);
 };
