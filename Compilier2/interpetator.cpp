@@ -3,7 +3,7 @@
 /**
 *	use "Exceptions.h"
 *	constructors interpretators 
-*/
+0*/
 interpetator::interpetator():work_line(""){
 	exceptions("empty arguments");
 }
@@ -31,15 +31,13 @@ queue<token> interpetator::translate(){
 	token buff;
 	string line,line2;
 	size_t i = 0;
-	while(!str.eof()) {
-		if (str.peek()==EOF)break;
-		str >> line;
+	str >> line;
+	while(i<line.length()){
 		try
 		{
-
 			line2 = "";
-			if (isalnum(line[i])) {
-				while (isalnum(line[i])) {
+			if ((line[i] >= '0') && (line[i] <= '9')) {
+				while ((line[i] >= '0') && (line[i] <= '9')) {
 					line2 = line2 + line[i];
 					i++;
 				}

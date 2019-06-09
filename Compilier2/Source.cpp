@@ -1,6 +1,6 @@
 #include "interpretator.h"
 int main() {
-	string p("1+2+3");
+	string p("1+2+3 + 4");
 	interpetator l(p);
 	l.translate();
 	return 0;
