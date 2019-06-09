@@ -24,18 +24,29 @@ interpetator::interpetator(const char* input) : work_line(input) {
 /*translate to RPN*/
 
 queue<token> interpetator::translate(){
-	istringstream str(work_line);
+	stringstream str(work_line);
 	stack<double> st;
 	stack<token> tokens;
 	queue<token> result;
 	token buff;
-	string line;
+	string line,line2;
+	size_t i = 0;
 	while(!str.eof()) {
-		if (str.peek())break;
+		if (str.peek()==EOF)break;
 		str >> line;
 		try
 		{
-			buff=line;
+
+			line2 = "";
+			if (isalnum(line[i])) {
+				while (isalnum(line[i])) {
+					line2 = line2 + line[i];
+					i++;
+				}
+			}
+			else line2 = line[i];
+			cout << line2;
+			buff=line2;
 		}
 		catch (const string&)
 		{
@@ -73,6 +84,7 @@ queue<token> interpetator::translate(){
 				tokens.push(buff);
 			}
 		}
+		i++;
 	}
 	while (!tokens.empty()) {
 		result.push(tokens.top());

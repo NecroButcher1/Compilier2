@@ -7,13 +7,13 @@
 using namespace std;
 
 /* operators and priority operators*/
-const set<string> operators({ "^~+-*/&<>=#!;)(" }); 
-const set<string> priority1({ "^~+-" });
-const set<string> priority2({ "*/&" });
-const set<string> priority3({ "+-" });
-const set<string> priority4({ "<>=#" });
+const set<string> operators({ "^","~","+","-","*","/","&","<",">","=","#","!",";",")","(" }); 
+const set<string> priority1({ "^","~","+","-" });
+const set<string> priority2({ "*","/","&" });
+const set<string> priority3({ "+","-" });
+const set<string> priority4({ "<",">","=","#" });
 const set<string> priority5({ "!" });
-const set<string> priority6({ "();" });
+const set<string> priority6({ "(",")",";" });
 
 /*what is it?*/
 const string number("number");
@@ -30,7 +30,7 @@ private:
 	int priority;
 public:
 	token(const string&);
-	token() :symbol("null"), type(unary_operator), assoc(left_assoc) {};
+	token() :symbol("null"), type(unary_operator), assoc(left_assoc),priority(0) {};
 	token operator=(const string&);
 	token operator=(token&);
 	const bool operator==(const string&);

@@ -3,42 +3,49 @@
 /*constructors tokens, make priority and associativity*/
 token::token(const string& in) {
 	if (priority1.find(in) != priority1.end()) {
+		symbol = in;
 		type = unary_operator;
 		assoc = right_assoc;
 		priority = 5;
 	}
 	else if (priority2.find(in) != priority2.end()) {
+		symbol = in;
 		type = binary_operator;
 		assoc = right_assoc;
 		priority = 4;
 	}
 	else if (priority3.find(in) != priority3.end()) {
+		symbol = in;
 		type = binary_operator;
 		assoc = left_assoc;
 		priority = 3;
 	}
 	else if (priority4.find(in) != priority4.end()) {
+		symbol = in;
 		type = binary_operator;
 		assoc = right_assoc;
 		priority = 2;
 	}
 	else if (priority5.find(in) != priority5.end()) {
+		symbol = in;
 		type = binary_operator;
 		assoc = left_assoc;
 		priority = 1;
 	}
 	else if (priority6.find(in) != priority6.end()) {
+		symbol = in;
 		type = punctuation;
 		assoc = left_assoc;
 		priority = 0;
 	}
-	else {
+	if(operators.find(in)==operators.end()) {
 		try 
 		{
 			stod(in.c_str());
 			type = number;
+			symbol = in;
 		}
-		catch (string&) {
+		catch (const string&) {
 			throw exceptions("unknown token, error in token::token ");
 		}
 	}
