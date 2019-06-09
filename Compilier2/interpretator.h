@@ -24,5 +24,5 @@ public:
 	const double calculate();
 	interpetator operator=(const string&);
 	interpetator operator=(fstream&);
-	const string operator*();
+	const string operator*(); /*разыменователь для строки */
 };

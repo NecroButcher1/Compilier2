@@ -37,7 +37,6 @@ const string interpetator::operator*() {
 
 queue<token> interpetator::translate(){
 	stringstream str(work_line);
-	stack<double> st;
 	stack<token> tokens;
 	queue<token> result;
 	token buff;
@@ -105,5 +104,35 @@ queue<token> interpetator::translate(){
 	return result;
 }
 const double interpetator::calculate() {
+	queue<token> result;
+	try
+	{
+		result = this->translate();
+	}
+	catch (const string&)
+	{
+		throw exceptions("fail in calculate :interpretator:calculate");
+	}
+	stack<double> buff;
+	if (result.empty()) {
+		throw exceptions("empty result queue");
+	}
+	while (!result.empty()) {
+		if (result.front().is_number()) {
+			buff.push(stod(result.front().get_operand()));
+			result.pop();
+		}
+		if (!result.empty() and result.front().get_operand() =="+" and result.front().is_binary()) {
+			if (buff.size() >= 2) {
+				double temp = buff.top();
+				buff.pop();
+				temp += buff.top();
+				buff.pop();
+				buff.push(temp);
+				result.pop();
+			}
+
+		}
+	}
 	return 0;
 }
