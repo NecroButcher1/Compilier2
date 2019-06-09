@@ -7,41 +7,42 @@ token::token(const string& in) {
 		type = unary_operator;
 		assoc = right_assoc;
 		priority = 5;
-	}
-	else if (priority2.find(in) != priority2.end()) {
+		}
+	 if (priority2.find(in) != priority2.end()) {
 		symbol = in;
 		type = binary_operator;
 		assoc = right_assoc;
 		priority = 4;
-	}
-	else if (priority3.find(in) != priority3.end()) {
+		}
+	 if (priority3.find(in) != priority3.end()) {
 		symbol = in;
 		type = binary_operator;
 		assoc = left_assoc;
 		priority = 3;
-	}
-	else if (priority4.find(in) != priority4.end()) {
+		}
+	 if (priority4.find(in) != priority4.end()) {
 		symbol = in;
 		type = binary_operator;
 		assoc = right_assoc;
 		priority = 2;
-	}
-	else if (priority5.find(in) != priority5.end()) {
+		}
+	 if (priority5.find(in) != priority5.end()) {
 		symbol = in;
 		type = binary_operator;
 		assoc = left_assoc;
 		priority = 1;
-	}
-	else if (priority6.find(in) != priority6.end()) {
+		}
+	 if (priority6.find(in) != priority6.end()) {
 		symbol = in;
 		type = punctuation;
 		assoc = left_assoc;
 		priority = 0;
-	}
+		}
 	if(operators.find(in)==operators.end()) {
 		try 
 		{
-			stod(in.c_str());
+			stod(in);
+		//	cout << in;
 			type = number;
 			symbol = in;
 		}

@@ -36,15 +36,18 @@ queue<token> interpetator::translate(){
 		try
 		{
 			line2 = "";
-			if ((line[i] >= '0') && (line[i] <= '9')) {
+			line2 = line[i];
+			if ((line[i] >= '0') && (line[i] <= '9'))
+			{
+				line2 = "";
 				while ((line[i] >= '0') && (line[i] <= '9')) {
 					line2 = line2 + line[i];
-					i++;
+					++i;
 				}
+				--i;
 			}
-			else line2 = line[i];
-			cout << line2;
 			buff=line2;
+			//cout << buff.get_operand();
 		}
 		catch (const string&)
 		{
@@ -72,7 +75,6 @@ queue<token> interpetator::translate(){
 					}
 				}
 				tokens.pop();
-
 			}
 			if (buff.is_binary()) {
 				while (!tokens.empty() && (tokens.top().is_unary() || tokens.top() > buff || (tokens.top() == buff && tokens.top().is_left_assoc()))) {
@@ -86,8 +88,11 @@ queue<token> interpetator::translate(){
 	}
 	while (!tokens.empty()) {
 		result.push(tokens.top());
-		cout << tokens.top().get_operand();
 		tokens.pop();
+	}
+	while (!result.empty()) {
+		cout << result.front().get_operand();
+		result.pop();
 	}
 	return result;
 }
