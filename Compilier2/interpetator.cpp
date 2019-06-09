@@ -90,9 +90,5 @@ queue<token> interpetator::translate(){
 		result.push(tokens.top());
 		tokens.pop();
 	}
-	while (!result.empty()) {
-		cout << result.front().get_operand();
-		result.pop();
-	}
 	return result;
 }
