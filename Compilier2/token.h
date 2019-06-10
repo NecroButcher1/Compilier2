@@ -8,11 +8,11 @@ using namespace std;
 
 /* operators and priority operators*/
 const set<string> operators({ "^","~","+","-","*","/","&","<",">","=","#","!",";",")","(" }); 
-const set<string> priority1({ "^","~","+","-" });
-const set<string> priority2({ "*","/","&" });
-const set<string> priority3({ "+","-" });
-const set<string> priority4({ "<",">","=","#" });
-const set<string> priority5({ "!" });
+const set<string> priority1({ "^","~","+","-" }); //	_RIGHT_ associativity
+const set<string> priority2({ "*","/","&" });     //	_RIGHT_ associativity
+const set<string> priority3({ "+","-" });         //	_LEFT_  associativity
+const set<string> priority4({ "<",">","=","#" }); //	_RIGHT_ associativity
+const set<string> priority5({ "!" });             //	_LEFT_  associativity
 const set<string> priority6({ "(",")",";" });
 
 /*what is it?*/
@@ -30,9 +30,12 @@ private:
 	int priority;
 public:
 	token(const string&);
+	token(pair<const string, const bool>);
+	token(const string&, const bool&);
 	token() :symbol("null"), type(unary_operator), assoc(left_assoc),priority(0) {};
 	token operator=(const string&);
 	token operator=(token&);
+	token operator=(pair<const string, const bool>);
 	const bool operator==(const string&);
 	const bool operator==(token&);
 	const bool operator==(const int&);

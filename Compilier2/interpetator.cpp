@@ -42,6 +42,7 @@ queue<token> interpetator::translate(){
 	token buff;
 	string line,line2;
 	size_t i = 0;
+	bool prev_is_number(false);
 	str >> line;
 	while(i<line.length()){
 		try
@@ -57,7 +58,7 @@ queue<token> interpetator::translate(){
 				}
 				--i;
 			}
-			buff=line2;
+			buff = pair<const string,const bool>(line2,prev_is_number);
 			//cout << buff.get_operand();
 		}
 		catch (const string&)
@@ -66,10 +67,12 @@ queue<token> interpetator::translate(){
 		}
 		if (buff.is_number()) {
 			result.push(buff);
+			prev_is_number = true;
 		}
 		else {
 			if (buff.is_unary()) {
 				tokens.push(buff);
+				prev_is_number = false;
 			}
 			if (buff.is_open_token()) {
 				tokens.push(buff);
@@ -93,6 +96,7 @@ queue<token> interpetator::translate(){
 					tokens.pop();
 				}
 				tokens.push(buff);
+				prev_is_number = false;
 			}
 		}
 		i++;

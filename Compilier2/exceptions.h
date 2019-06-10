@@ -8,10 +8,10 @@ private:
 	const char* messages;
 public:
 	exceptions(const char* _messages, size_t _position_error) :messages(_messages), position_error(_position_error) {
-		std::cout << messages << " :" << position_error << std::endl;
+		std::cout << std::endl<< messages << " :" << position_error << std::endl;
 	}
 	exceptions(const char* _messages) :messages(_messages) {
-		std::cout << messages << std::endl;
+		std::cout <<std::endl<< messages << std::endl;
 	}
 };
 #endif //EXCEPTIONS_H_INCLUDED

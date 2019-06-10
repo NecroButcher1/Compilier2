@@ -2,12 +2,18 @@
 
 /*constructors tokens, make priority and associativity*/
 token::token(const string& in) {
-	if (priority1.find(in) != priority1.end()) {
+	if ((priority1.find(in) != priority1.end())and((in=="+")||(in=="-"))) {
 		symbol = in;
 		type = unary_operator;
 		assoc = right_assoc;
 		priority = 5;
-		}
+	}
+	if ((priority1.find(in) != priority1.end()) and (in == "^")) {
+		symbol = in;
+		type = binary_operator;
+		assoc = right_assoc;
+		priority = 5;
+	}
 	 if (priority2.find(in) != priority2.end()) {
 		symbol = in;
 		type = binary_operator;
@@ -50,6 +56,81 @@ token::token(const string& in) {
 			throw exceptions("unknown token, error in token::token ");
 		}
 	}
+}
+token::token(const string& operand, const bool& prev_number) {
+	if ((priority1.find(operand) != priority1.end()) and ((operand=="+") or (operand=="-") or (operand=="^"))) {
+		if (prev_number or operand=="^") {
+			symbol = operand;
+			type = binary_operator;
+			assoc = left_assoc;
+			priority = 3;
+		}
+		else {
+			symbol = operand;
+			type = unary_operator;
+			assoc = right_assoc;
+			priority = 5;
+		}
+	}
+	if (priority2.find(operand) != priority2.end()) {
+		symbol = operand;
+		type = binary_operator;
+		assoc = right_assoc;
+		priority = 4;
+	}
+	if (priority3.find(operand) != priority3.end()) {
+		symbol = operand;
+		type = binary_operator;
+		assoc = left_assoc;
+		priority = 3;
+	}
+	if (priority4.find(operand) != priority4.end()) {
+		symbol = operand;
+		type = binary_operator;
+		assoc = right_assoc;
+		priority = 2;
+	}
+	if (priority5.find(operand) != priority5.end()) {
+		symbol = operand;
+		type = binary_operator;
+		assoc = left_assoc;
+		priority = 1;
+	}
+	if (priority6.find(operand) != priority6.end()) {
+		symbol = operand;
+		type = punctuation;
+		assoc = left_assoc;
+		priority = 0;
+	}
+	if (operators.find(operand) == operators.end()) {
+		try
+		{
+			stod(operand);
+			//	cout << in;
+			type = number;
+			symbol = operand;
+		}
+		catch (const string&) {
+			throw exceptions("unknown token, error in token::token ");
+		}
+	}
+	/*if ((priority1.find(operand) != priority1.end()) and (operand == "^")) {
+		if (prev_number) {
+			symbol = operand;
+			type = binary_operator;
+			assoc = right_assoc;
+			priority = 5;
+		}
+	}*/
+}
+token::token(pair<const string,const bool> in) {
+	*this = *(new token(in.first, in.second));
+}
+
+
+token token::operator=(pair<const string, const bool> in) {
+	*this = *(new token(in.first, in.second));
+	return *this;
 }
 token token::operator=(token& in) {
 	type = in.type;
